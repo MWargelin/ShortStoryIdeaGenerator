@@ -3,6 +3,7 @@ package ssig;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -16,12 +17,14 @@ public class FileReader {
     private Scanner s;
     
     public FileReader() {
-        File file = new File("words.txt");
+//        File file = new File("words.txt");
+
+       InputStream stream = FileReader.class.getResourceAsStream("words.txt");
         try {
-            this.s = new Scanner(file);
+            this.s = new Scanner(stream);
             readWordsToArray();
             this.s.close();
-        } catch (FileNotFoundException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(FileReader.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
